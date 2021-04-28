@@ -16,7 +16,7 @@ public class ContatoService {
 	
 	public Contato find(Integer id) {
 		Optional<Contato> obj = repo.findById(id);
-		return obj;
+		return obj.orElseThrow();
 	}
 
 }
