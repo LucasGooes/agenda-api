@@ -18,6 +18,7 @@ public class ContatoDTO {
 	@Email(message = "Email inválido")
 	private String email;
 	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min = 8, max=20, message = "O tamanho deve ser entre 8 e 20 caracteres")
 	private String telefone1;
 	private String telefone2;
 	

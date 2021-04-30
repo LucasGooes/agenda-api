@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -61,6 +62,14 @@ public class ContatoResource {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
-	
+	@RequestMapping(value = "/filter",method = RequestMethod.GET)
+	public ResponseEntity<List<Contato>> findByPrimeiroNome(
+			@RequestParam(value = "nome", defaultValue = "") String nome)
+			/*,
+			@RequestParam(value = "email", defaultValue = "") String email)*/ {
+		List<Contato> list = service.findByNameOrEmail(nome/*, email*/);
+		//List<ContatoDTO> listDto = list.stream().map(obj -> new ContatoDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(list/*Dto*/);
+	}
 
 }

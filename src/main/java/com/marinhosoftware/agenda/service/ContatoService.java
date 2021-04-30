@@ -24,6 +24,11 @@ public class ContatoService {
 				 "Objeto não encontrado! Id: " + id + ", Tipo: " + Contato.class.getName()));
 	}
 	
+	public List<Contato> findByNameOrEmail(String nome/*, String email*/) {
+		List<Contato> contatos = repo.findByPrimeiroNome(nome);
+		return contatos;
+	}
+	
 	@Transactional
 	public Contato insert(Contato obj) {
 		obj.setId(null);
