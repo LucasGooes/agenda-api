@@ -54,7 +54,7 @@ public class ContatoService {
 		return contato;
 	}
 	
-	public void updateData(Contato newObj, Contato obj) {
+	private void updateData(Contato newObj, Contato obj) {
 		newObj.setPrimeiroNome(obj.getPrimeiroNome());
 		newObj.setUltimoNome(obj.getUltimoNome());
 		newObj.setEmail(obj.getEmail());
