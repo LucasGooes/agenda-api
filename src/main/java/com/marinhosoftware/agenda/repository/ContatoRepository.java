@@ -9,10 +9,7 @@ import com.marinhosoftware.agenda.domain.Contato;
 
 @Repository
 public interface ContatoRepository extends JpaRepository<Contato, Integer> {
-	/*
-	List<Contato> findByPrimeiroNome(String nome);
-	List<Contato> findByEmail(String email);
-	*/
+
 	List<Contato> findByPrimeiroNomeOrEmail(String nome, String email);
 
 }
