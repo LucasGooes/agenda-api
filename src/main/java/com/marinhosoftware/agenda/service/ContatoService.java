@@ -24,10 +24,15 @@ public class ContatoService {
 				 "Objeto não encontrado! Id: " + id + ", Tipo: " + Contato.class.getName()));
 	}
 	
-	public List<Contato> findByNameOrEmail(String nome/*, String email*/) {
-		List<Contato> contatos = repo.findByPrimeiroNome(nome);
+	public List<Contato> findByNameOrEmail(String nome, String email) {
+		List<Contato> contatos = repo.findByPrimeiroNomeOrEmail(nome, email);
 		return contatos;
 	}
+	/*
+	public List<Contato> findByEmail(String email) {
+		List<Contato> contatos = repo.findByEmail(email);
+		return contatos;
+	}*/
 	
 	@Transactional
 	public Contato insert(Contato obj) {
@@ -49,6 +54,12 @@ public class ContatoService {
 	public List<Contato> findAll() {
 		return repo.findAll();
 	}
+	
+	/*
+	public Page<Contato> findPage(String nome, String email, Integer page, Integer linesPerPage, String orderBy, String direction) {
+		PageRequest pageRequest = PageRequest.of( page, linesPerPage, Direction.valueOf(direction), orderBy);
+		return repo.search(nome, email, pageRequest);
+	}*/
 	
 	public Contato fromDTO(ContatoDTO objDto) {
 		Contato contato = new Contato(objDto.getPrimeiroNome(), objDto.getUltimoNome(), objDto.getEmail());

@@ -63,13 +63,12 @@ public class ContatoResource {
 	}
 	
 	@RequestMapping(value = "/filter",method = RequestMethod.GET)
-	public ResponseEntity<List<Contato>> findByPrimeiroNome(
-			@RequestParam(value = "nome", defaultValue = "") String nome)
-			/*,
-			@RequestParam(value = "email", defaultValue = "") String email)*/ {
-		List<Contato> list = service.findByNameOrEmail(nome/*, email*/);
-		//List<ContatoDTO> listDto = list.stream().map(obj -> new ContatoDTO(obj)).collect(Collectors.toList());
-		return ResponseEntity.ok().body(list/*Dto*/);
+	public ResponseEntity<List<ContatoDTO>> findByNomeOrEmail(
+		@RequestParam(value = "nome", defaultValue = "") String nome,
+		@RequestParam(value = "email", defaultValue = "") String email) {
+		List<Contato> list = service.findByNameOrEmail(nome, email);
+		List<ContatoDTO> listDto = list.stream().map(obj -> new ContatoDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 
 }
