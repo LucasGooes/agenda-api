@@ -1,16 +1,19 @@
-version: '3'
+version: '3.3'
 services:
     mysql:
         image: mysql:5.7
-        container_name: agenda_mysql
+        restart: always
         environment:
-            MYSQL_USER: root
-            MYSQL_ALLOW_EMPTY_PASSWORD : "true"
             MYSQL_DATABASE: agenda
+            MYSQL_PASSWORD: 1234
+            MYSQL_ROOT_PASSWORD: 1234
         ports:
+            - "3306:3306"
+        expose: 
             - "3306"
         networks: 
-            - production-network
+         - production-network
 networks:
     production-network:
         driver: bridge
+        name: production-network
